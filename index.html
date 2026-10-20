@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CityCare Demo Hospital | AI Help Desk</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f8fc;
+      color: #183047;
+    }
+
+    header {
+      background: #1167a5;
+      color: white;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header h1 { margin: 0 0 10px; }
+
+    main {
+      max-width: 1000px;
+      margin: 35px auto;
+      padding: 0 20px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .service {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+    }
+
+    .service h3 { color: #1167a5; }
+
+    .notice {
+      margin-top: 28px;
+      background: #e7f2fb;
+      padding: 18px;
+      border-radius: 10px;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+    }
+
+    :root {
+      --chat--color-primary: #1167a5;
+      --chat--color-primary-shade-50: #09558b;
+      --chat--window--width: 380px;
+      --chat--window--height: 550px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>CityCare Demo Hospital</h1>
+    <p>AI-Powered Hospital Help Desk</p>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>Welcome to Our Hospital AI Assistant</h2>
+      <p>
+        Ask our chatbot about appointments, doctors,
+        billing, technical support, or human assistance.
+      </p>
+    </section>
+
+    <section class="services">
+      <div class="service">
+        <h3>📅 Appointments</h3>
+        <p>Ask about appointment requests and departments.</p>
+      </div>
+
+      <div class="service">
+        <h3>👨‍⚕️ Doctor Information</h3>
+        <p>Learn about our sample doctors and specialties.</p>
+      </div>
+
+      <div class="service">
+        <h3>💳 Billing Enquiries</h3>
+        <p>Ask about sample billing and payment information.</p>
+      </div>
+
+      <div class="service">
+        <h3>💻 Technical Support</h3>
+        <p>Get help with website and chatbot questions.</p>
+      </div>
+
+      <div class="service">
+        <h3>🤝 Human Assistance</h3>
+        <p>Learn how to contact official hospital support.</p>
+      </div>
+    </section>
+
+    <div class="notice">
+      <strong>How to use:</strong>
+      Click the chat icon at the bottom-right and type your question.
+      <p>
+        <strong>Important:</strong> This is a student demonstration
+        using sample data only. No real appointments are booked,
+        no payments are processed, and no human support
+        representative is connected.
+      </p>
+      <p>
+        Do not enter real patient information or medical records.
+        For medical emergencies, contact local emergency services.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    CityCare Demo Hospital | Student AI Project
+  </footer>
+
+  <script type="module">
+    import { createChat } from
+      'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+      webhookUrl:
+        'https://kalyanmaddu.app.n8n.cloud/webhook/461899b1-44f0-4810-a52e-64c166aa9bf5/chat',
+      mode: 'window',
+      showWelcomeScreen: true,
+      initialMessages: [
+        'Welcome to CityCare Demo Hospital!',
+        'How can I help you today?'
+      ],
+      i18n: {
+        en: {
+          title: 'Hospital AI Help Desk',
+          subtitle: 'Ask about our demo hospital services',
+          inputPlaceholder: 'Type your question...',
+          getStarted: 'Start a chat',
+          footer: ''
+        }
+      }
+    });
+  </script>
+</body>
+</html>
