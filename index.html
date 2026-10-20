@@ -6,10 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CityCare Demo Hospital | AI Help Desk</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet">
+  <link
+    href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css"
+    rel="stylesheet"
+  >
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -25,7 +30,9 @@
       text-align: center;
     }
 
-    header h1 { margin: 0 0 10px; }
+    header h1 {
+      margin: 0 0 10px;
+    }
 
     main {
       max-width: 1000px;
@@ -48,10 +55,12 @@
       background: white;
       border-radius: 12px;
       padding: 24px;
-      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
     }
 
-    .service h3 { color: #1167a5; }
+    .service h3 {
+      color: #1167a5;
+    }
 
     .notice {
       margin-top: 28px;
@@ -67,22 +76,135 @@
       color: #64748b;
     }
 
+    /* CHATBOT SETTINGS */
+
     :root {
       --chat--color-primary: #1167a5;
       --chat--color-primary-shade-50: #09558b;
+      --chat--color-secondary: #1167a5;
+
       --chat--window--width: 380px;
-      --chat--window--height: 550px;
+      --chat--window--height: 520px;
+
+      --chat--header--background: #1167a5;
+      --chat--header--color: #ffffff;
+
+      --chat--heading--font-size: 20px;
+      --chat--subtitle--font-size: 13px;
+      --chat--subtitle--line-height: 1.4;
+
+      --chat--message--font-size: 14px;
+      --chat--message--line-height: 1.5;
+
+      --chat--border-radius: 12px;
+    }
+
+    /* Chat window */
+
+    .chat-window {
+      width: min(380px, calc(100vw - 24px)) !important;
+      height: min(520px, calc(100dvh - 24px)) !important;
+      max-height: calc(100dvh - 24px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      border-radius: 12px !important;
+    }
+
+    /* Smaller chatbot header */
+
+    .chat-header {
+      padding: 14px 16px !important;
+      min-height: 0 !important;
+      flex-shrink: 0 !important;
+    }
+
+    .chat-header h1 {
+      font-size: 20px !important;
+      line-height: 1.3 !important;
+      margin: 0 0 4px !important;
+    }
+
+    .chat-header p {
+      font-size: 13px !important;
+      line-height: 1.4 !important;
+      margin: 0 !important;
+    }
+
+    /* Chat conversation area */
+
+    .chat-body {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .chat-messages-list {
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      min-height: 0 !important;
+      padding: 12px !important;
+    }
+
+    .chat-message {
+      max-width: 100% !important;
+      overflow-wrap: anywhere !important;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+    }
+
+    .chat-message p {
+      margin: 0 0 8px;
+    }
+
+    .chat-message p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Keep input at bottom */
+
+    .chat-footer {
+      flex-shrink: 0 !important;
+    }
+
+    .chat-input {
+      flex-shrink: 0 !important;
+    }
+
+    /* Mobile adjustments */
+
+    @media (max-width: 480px) {
+      .chat-window {
+        width: calc(100vw - 16px) !important;
+        height: min(520px, calc(100dvh - 16px)) !important;
+        right: 8px !important;
+        bottom: 8px !important;
+      }
+
+      .chat-header h1 {
+        font-size: 18px !important;
+      }
+
+      header h1 {
+        font-size: 28px;
+      }
+
+      main {
+        padding: 0 15px;
+      }
     }
   </style>
 </head>
 
 <body>
+
   <header>
     <h1>CityCare Demo Hospital</h1>
     <p>AI-Powered Hospital Help Desk</p>
   </header>
 
   <main>
+
     <section class="intro">
       <h2>Welcome to Our Hospital AI Assistant</h2>
       <p>
@@ -92,6 +214,7 @@
     </section>
 
     <section class="services">
+
       <div class="service">
         <h3>📅 Appointments</h3>
         <p>Ask about appointment requests and departments.</p>
@@ -116,22 +239,26 @@
         <h3>🤝 Human Assistance</h3>
         <p>Learn how to contact official hospital support.</p>
       </div>
+
     </section>
 
     <div class="notice">
       <strong>How to use:</strong>
       Click the chat icon at the bottom-right and type your question.
+
       <p>
-        <strong>Important:</strong> This is a student demonstration
-        using sample data only. No real appointments are booked,
-        no payments are processed, and no human support
-        representative is connected.
+        <strong>Important:</strong>
+        This is a student demonstration using sample data only.
+        No real appointments are booked, no payments are processed,
+        and no human support representative is connected.
       </p>
+
       <p>
         Do not enter real patient information or medical records.
         For medical emergencies, contact local emergency services.
       </p>
     </div>
+
   </main>
 
   <footer>
@@ -145,12 +272,16 @@
     createChat({
       webhookUrl:
         'https://kalyanmaddu.app.n8n.cloud/webhook/461899b1-44f0-4810-a52e-64c166aa9bf5/chat',
+
       mode: 'window',
-      showWelcomeScreen: true,
+
+      showWelcomeScreen: false,
+
       initialMessages: [
         'Welcome to CityCare Demo Hospital!',
         'How can I help you today?'
       ],
+
       i18n: {
         en: {
           title: 'Hospital AI Help Desk',
@@ -162,5 +293,6 @@
       }
     });
   </script>
+
 </body>
 </html>
